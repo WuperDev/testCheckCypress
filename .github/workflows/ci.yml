@@ -21,7 +21,7 @@ jobs:
       # to always have something to upload
 
       - name: Wyślij raport na maila
-        uses: action-send-mail@v2
+        uses: WuperDev/action-send-mail@v2
         with:
           server_address: smtp.example.com
           server_port: 587
