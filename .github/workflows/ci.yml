@@ -1,7 +1,7 @@
 name: End-to-end tests
 on: 
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
@@ -21,7 +21,7 @@ jobs:
       # to always have something to upload
 
       - name: Wyślij raport na maila
-        uses: WuperDev/action-send-mail@v2
+        uses: AdrianDubel8/action-send-mail@v2
         with:
           server_address: smtp.example.com
           server_port: 587
