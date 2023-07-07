@@ -1,0 +1,22 @@
+{
+  "name": "sklepprojektcypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tests:headed": "npx cypress open",
+    "tests:headless": "npx cypress run"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.40.0",
+    "@testing-library/cypress": "^9.0.0",
+    "cypress": "^12.16.0",
+    "cypress-mochawesome-reporter": "^3.5.1"
+  },
+  "dependencies": {
+    "cypress-plugin-api": "^2.11.1",
+    "cypress-plugin-steps": "^1.1.1"
+  }
+}
