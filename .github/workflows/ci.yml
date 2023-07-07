@@ -19,6 +19,24 @@ jobs:
       # thus we store screenshots only on failures
       # Alternative: create and commit an empty cypress/screenshots folder
       # to always have something to upload
+
+      - name: Wyślij raport na maila
+        uses: action-send-mail@v2
+        with:
+          server_address: smtp.example.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Raport z testów
+          body: |
+            Witaj,
+
+            Załączam raport z ostatniego uruchomienia testów.
+
+            Pozdrawiam,
+            Twój Bot GitHub Actions
+          to: adres-email@domena.com
+
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
