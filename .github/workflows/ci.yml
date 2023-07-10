@@ -1,7 +1,7 @@
 name: End-to-end tests
 on: 
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/5 * * * *"
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
@@ -32,3 +32,36 @@ jobs:
           # path: cypress/videos
           name: mocha-report
           path: cypress/reports
+
+Send-Email:
+    runs-on: ubuntu-latest
+    needs: End-to-end tests
+    if: always()
+    steps:
+      - name: Checkout GitCode
+        uses: actions/checkout@v2
+
+      - name: Download Cypress artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: mocha-report
+          path: cypress-results
+
+      - name: Send email with Cypress artifacts
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Cypress test results"
+          from: Test Suite
+          body: |
+            Hi,
+            The Cypress test workflow for.
+            Please find the Cypress artifacts attached to this email.
+            Regards,
+            abc
+          to: wuper.dev88@gmail.com
+          attachments: |
+            ./cypress-results/*.html
