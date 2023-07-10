@@ -33,19 +33,19 @@ jobs:
           name: mocha-report
           path: cypress/reports
 
-Send-Email:
-    runs-on: ubuntu-latest
-    needs: End-to-end tests
-    if: always()
-    steps:
-      - name: Checkout GitCode
-        uses: actions/checkout@v2
+# Send-Email:
+#     runs-on: ubuntu-latest
+#     needs: End-to-end tests
+#     if: always()
+#     steps:
+#       - name: Checkout GitCode
+#         uses: actions/checkout@v2
 
       - name: Download Cypress artifacts
         uses: actions/download-artifact@v2
         with:
           name: mocha-report
-          path: cypress-results
+          path: cypress/reports
 
       - name: Send email with Cypress artifacts
         uses: dawidd6/action-send-mail@v3
